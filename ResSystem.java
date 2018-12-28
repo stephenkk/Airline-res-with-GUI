@@ -59,7 +59,7 @@ public class ResSystem extends JFrame implements ActionListener{
 		else if (actionCommand.equals("Coach")) 
 			assignCoachClass();
 	
-		System.out.println(cabin);
+		//System.out.println(cabin);
 		// TODO Auto-generated method stub
 		
 	}
