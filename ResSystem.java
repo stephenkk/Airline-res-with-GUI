@@ -59,7 +59,7 @@ public class ResSystem extends JFrame implements ActionListener{
 		else if (actionCommand.equals("Coach")) 
 			assignCoachClass();
 	
-		System.out.println(cabin);
+		//System.out.println(cabin);
 		// TODO Auto-generated method stub
 		
 	}
@@ -77,6 +77,16 @@ public class ResSystem extends JFrame implements ActionListener{
 		}
 		return seatsRemain;		//seatsRemain == true means seats are still available in at least
 	}							//one class of service.
+	public void setSeatsRemain (boolean newSeatsRemain) {
+		seatsRemain = newSeatsRemain;
+	}
+	
+	public boolean getSeatsRemain (){
+	
+		return seatsRemain;
+	}
+	
+	
 	public void assignFirstClass () {//Assigns a seat in first class based on customer choice
 		firstClassSeat=0;			//offers coach (if available) if 1st is not available
 		
@@ -85,20 +95,21 @@ public class ResSystem extends JFrame implements ActionListener{
 		}if (firstClassSeat <= 4) {
 		seats[firstClassSeat] = true;//array element set to true as seat is now assigned.
 		
-		System.out.println("Your seat is #" + (firstClassSeat + 1) +" in first class."
+		JOptionPane.showMessageDialog(null, "Your seat is #" + (firstClassSeat + 1) +" in"
+				+ " the first class cabin."
 				+ " Your boarding pass is printed below.");
 		System.out.println();
 		printBoardingPassFC();
+		planeNotFull();
 		}
 		else if (seatsRemain == true) {
-		int secondChoice = JOptionPane.showConfirmDialog(null, "full", "y or n", JOptionPane.YES_NO_OPTION);	//local var to give customer the option of the other class
-		/*System.out.println("The first class cabin is full. 
-				+ " Would you like to travel in coach class?"y
-				+ " Enter 1 for yes or 2 for no.");*/
-		
+		int secondChoice = JOptionPane.showConfirmDialog(null, "The first class cabin is "
+				+ "full", "Would you like to researve in coach?", 
+				JOptionPane.YES_NO_OPTION);	
 		if (secondChoice == 0) 					
 			assignCoachClass();
-		else System.out.println("The next flight departs in 3 hours.");
+		else JOptionPane.showMessageDialog(null, "The next flight departs"
+				+ "in three hours" );
 		}
 		
 	}
@@ -111,20 +122,21 @@ public class ResSystem extends JFrame implements ActionListener{
 			
 			if (coachClassSeat <= 9) {
 			seats[coachClassSeat] = true;//array element set to true as seat is now assigned.
-			JOptionPane.showMessageDialog(null, "Your seat is #" + (coachClassSeat + 1) +" in the coach cabin."
+			JOptionPane.showMessageDialog(null, "Your seat is #" + (coachClassSeat + 1) +" in"
+					+ " the coach cabin."
 					+ " Your boarding pass is printed below.");
 			System.out.println();
 			printBoardingPassCoach();
+			planeNotFull();
 			}
 			else if (seatsRemain = true) {
-				int secondChoice = 0;	//local var to give customer the option of the other class
-			System.out.println("The coach class cabin is full."
-					+ " Would you like to travel in first class?"
-					+ " Enter 1 for yes or 2 for no.");
-			
-			if (secondChoice == 1) 					
+				int secondChoice = JOptionPane.showConfirmDialog(null, "The coach cabin is "
+						+ "full", "Would you like to researve in First Class?", 
+						JOptionPane.YES_NO_OPTION);	
+				if (secondChoice == 0)					
 				assignFirstClass();
-			else System.out.println("The next flight departs in 3 hours.");
+				else JOptionPane.showMessageDialog(null, "The next flight departs"
+						+ "in three hours" );
 			}
 	
 	}
