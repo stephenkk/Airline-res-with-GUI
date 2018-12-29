@@ -1,11 +1,15 @@
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -20,12 +24,13 @@ public class ResSystem extends JFrame implements ActionListener{
 	private int firstClassSeat;		//finds the next assignable element in the array seats (FC)
 	private int coachClassSeat;		//finds the next assignable element in the array seats (coach)
 
-	public static final int WIDTH = 700;
+	public static final int WIDTH = 350;
 	public static final int HEIGHT = 300;
 	
 	
 	public ResSystem() {//Constructor
-		cabin = false;
+		
+		//cabin = false;
 		int capacity = 11;
 		seats = new boolean[capacity];
 		seatsRemain = false;
@@ -33,10 +38,20 @@ public class ResSystem extends JFrame implements ActionListener{
 		coachClassSeat = 5;
 		
 		setSize(WIDTH, HEIGHT);
+		
+		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		Container contentPane = getContentPane();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setLayout(new FlowLayout());
+		
+		
+		
+		JLabel intro = new JLabel("There are seats available on this flight.");
+		JLabel classQuery = new JLabel("Would you like to reserve in first class"
+				+ " or coach?");
+		contentPane.add(intro);
+		contentPane.add(classQuery);
 		
 		JButton FirstClassButton = new JButton("First Class");
 		FirstClassButton.addActionListener(this);
@@ -97,14 +112,14 @@ public class ResSystem extends JFrame implements ActionListener{
 		
 		JOptionPane.showMessageDialog(null, "Your seat is #" + (firstClassSeat + 1) +" in"
 				+ " the first class cabin."
-				+ " Your boarding pass is printed below.");
+				+ " Your boarding pass will print below.");
 		System.out.println();
 		printBoardingPassFC();
 		planeNotFull();
 		}
 		else if (seatsRemain == true) {
-		int secondChoice = JOptionPane.showConfirmDialog(null, "The first class cabin is "
-				+ "full", "Would you like to researve in coach?", 
+		int secondChoice = JOptionPane.showConfirmDialog(null, "Would you like to researve in coach?", "The "
+				+ "first class cabin is full",  
 				JOptionPane.YES_NO_OPTION);	
 		if (secondChoice == 0) 					
 			assignCoachClass();
@@ -124,14 +139,14 @@ public class ResSystem extends JFrame implements ActionListener{
 			seats[coachClassSeat] = true;//array element set to true as seat is now assigned.
 			JOptionPane.showMessageDialog(null, "Your seat is #" + (coachClassSeat + 1) +" in"
 					+ " the coach cabin."
-					+ " Your boarding pass is printed below.");
+					+ " Your boarding pass will print below.");
 			System.out.println();
 			printBoardingPassCoach();
 			planeNotFull();
 			}
 			else if (seatsRemain = true) {
-				int secondChoice = JOptionPane.showConfirmDialog(null, "The coach cabin is "
-						+ "full", "Would you like to researve in First Class?", 
+				int secondChoice = JOptionPane.showConfirmDialog(null, "Would you like to reserve in first class?", "The coach "
+						+ "cabin is full", 
 						JOptionPane.YES_NO_OPTION);	
 				if (secondChoice == 0)					
 				assignFirstClass();
