@@ -8,5 +8,4 @@ If the user chooses not to reserve the alternate class of service, a message wil
 
 If the flight is full a meesage will inform the user that the next flight departs in 3 hours.
 
-To run the program: download the zip file from Github and unzip. If you unzip from Windows file manager, you may need to move the 
-Airline-res folder out of the Downloads folder to another path (perhaps C:\) in order to compile and run.
+To run the program: download the zip file from Github and unzip. If you unzip from Windows file manager, you may need to move the two java files ResSystem.java and DriveResSystem.java into a folder you have full access to such as c:\users\public in order to compile and run.
